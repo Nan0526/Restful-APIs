@@ -24,6 +24,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student findStudentById(int stuId) {
+		
 		return dao.findStudentById(stuId);
 	}
 

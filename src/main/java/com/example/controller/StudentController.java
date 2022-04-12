@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.model.Student;
 import com.example.service.StudentService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @RestController
 @RequestMapping(value="/student")
@@ -24,6 +26,7 @@ public class StudentController {
 	@Autowired
 	private StudentService service;
 	
+	private static final Logger logger = LogManager.getLogger(StudentController.class);
 	//Create
 	@PostMapping(path="/create")
 	public ResponseEntity<Boolean> createStudent(@RequestBody Student stu) {
@@ -44,6 +47,7 @@ public class StudentController {
 	//Read All
 	@GetMapping(path="/getAll")
 	public ResponseEntity<List<Student>> findAll() {
+		logger.info("Getting students!");
 		List<Student> list = service.findAllStudents();
 		
 		return new ResponseEntity<List<Student>>(list, new HttpHeaders(), HttpStatus.OK);
